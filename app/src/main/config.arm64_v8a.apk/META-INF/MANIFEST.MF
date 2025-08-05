@@ -1,0 +1,164 @@
+Manifest-Version: 1.0
+
+Name: AndroidManifest.xml
+SHA1-Digest: waXWjM/QMj4izhtB3zV0COKYjAU=
+
+Name: lib/arm64-v8a/libAVAPIsT.so
+SHA1-Digest: C/1DPU4QYzkWja+Tez5kvC/SUKA=
+
+Name: lib/arm64-v8a/libAgoraRtcWrapper.so
+SHA1-Digest: XrBQesgNxvKRuG6meRywh2ccs1s=
+
+Name: lib/arm64-v8a/libIOTCAPIsT.so
+SHA1-Digest: j4aUmPLrzR3OyAKgsE3SBgUNNus=
+
+Name: lib/arm64-v8a/libNebulaAPIsT.so
+SHA1-Digest: 6ML0SUmZJqztG1vK6vz1vj2QVNo=
+
+Name: lib/arm64-v8a/libP2PTunnelAPIsT.so
+SHA1-Digest: Yhq35jhr0XsXe1PUAvsuXe7XRfI=
+
+Name: lib/arm64-v8a/libRDTAPIsT.so
+SHA1-Digest: ICAeABkDu1ggzdw7JihhI0rs2GI=
+
+Name: lib/arm64-v8a/libTUTKGlobalAPIsT.so
+SHA1-Digest: YycjzOeBgCvGGZ/57KV0/2cafKI=
+
+Name: lib/arm64-v8a/libagora-core.so
+SHA1-Digest: HZE+h0oAov/QsiAcPcO69apxwnU=
+
+Name: lib/arm64-v8a/libagora-ffmpeg.so
+SHA1-Digest: ftg9LwbvgBh/Fv2F5eB8f7Ehs0Q=
+
+Name: lib/arm64-v8a/libagora-rtc-sdk.so
+SHA1-Digest: Ycr5OiUGE15pitZgoMjpcEhJAFY=
+
+Name: lib/arm64-v8a/libagora-rtm-sdk-jni.so
+SHA1-Digest: SFBtmWmrR6XLb6v0nTkGpPGtxAI=
+
+Name: lib/arm64-v8a/libagora-soundtouch.so
+SHA1-Digest: u9oIBSzV5x6kK/cuIjVyfdwfkns=
+
+Name: lib/arm64-v8a/libapp.so
+SHA1-Digest: iauG3+DeER3ZZbktmGB4Flqh6VI=
+
+Name: lib/arm64-v8a/libavcodec.so
+SHA1-Digest: 7nX3BEV+2db/YH4QMmTX0gLUiWo=
+
+Name: lib/arm64-v8a/libavdevice.so
+SHA1-Digest: vgYIg2RChUDL3BvLOXcd14Xch/k=
+
+Name: lib/arm64-v8a/libavfilter.so
+SHA1-Digest: Xvut5gTXnCB1KckTCgkZDvF6Do0=
+
+Name: lib/arm64-v8a/libavformat.so
+SHA1-Digest: RPsMNWoNf8vhqFkf3hPcOI5zKEQ=
+
+Name: lib/arm64-v8a/libavutil.so
+SHA1-Digest: 3Ot377/LW5q6fqEH5bmNZBQktRw=
+
+Name: lib/arm64-v8a/libbarhopper_v3.so
+SHA1-Digest: n8lyNjLsMfMW50a+v2hSFql1HnI=
+
+Name: lib/arm64-v8a/libc++_shared.so
+SHA1-Digest: gKM3UyYCv9NfpYw/B8PGwLYVYdg=
+
+Name: lib/arm64-v8a/libcrashlytics-common.so
+SHA1-Digest: FNCsEgr/VjQ8hb2sLVREKaHZEd4=
+
+Name: lib/arm64-v8a/libcrashlytics-handler.so
+SHA1-Digest: rQkFoWXKJCeZvNzxNMXQ2PuHSFQ=
+
+Name: lib/arm64-v8a/libcrashlytics-trampoline.so
+SHA1-Digest: pAQaq3L1dUWMLrrNEmlQa4YxCEA=
+
+Name: lib/arm64-v8a/libcrashlytics.so
+SHA1-Digest: blehR67FBFcb6ZhcKCJsuTdZykw=
+
+Name: lib/arm64-v8a/libdatastore_shared_counter.so
+SHA1-Digest: CV4WlQQMDBlkJLNYR0xKgZjKOsk=
+
+Name: lib/arm64-v8a/libffmpegkit.so
+SHA1-Digest: ClIJnpGVcUOV/CBkFYE7rYIDcvk=
+
+Name: lib/arm64-v8a/libffmpegkit_abidetect.so
+SHA1-Digest: JEB1Htour+1l7+IEgCiGniHn/GA=
+
+Name: lib/arm64-v8a/libfilament-assetlib.so
+SHA1-Digest: dASeOFHhSpL0vo9g1rt45HSbdXU=
+
+Name: lib/arm64-v8a/libfilament-group-jni.so
+SHA1-Digest: mMgtQmxgW76N340fC75uiMPuEBc=
+
+Name: lib/arm64-v8a/libfilament-jni.so
+SHA1-Digest: 43IjFviQxroHo4Jgj0ctiG7ukg4=
+
+Name: lib/arm64-v8a/libfilament-utils-jni.so
+SHA1-Digest: Fffez29CbWBJDfHyOURuq3VLu8M=
+
+Name: lib/arm64-v8a/libflutter.so
+SHA1-Digest: nuNs54jpOd/sErXNbAFAnw2fjbw=
+
+Name: lib/arm64-v8a/libgltfio-jni.so
+SHA1-Digest: 2VMQBsOhjPDzOozIb3ncMhsxlgg=
+
+Name: lib/arm64-v8a/libgojni.so
+SHA1-Digest: I1Ix32l8wNEXKZgWtxBjuDu4hB0=
+
+Name: lib/arm64-v8a/libimage_processing_util_jni.so
+SHA1-Digest: UOMKeycWGO8PQx7/SWiM6hucnnE=
+
+Name: lib/arm64-v8a/libiris_method_channel.so
+SHA1-Digest: Mb72oryesYUfE2unwrZo25kfJo0=
+
+Name: lib/arm64-v8a/libiris_rendering_android.so
+SHA1-Digest: 5byTZyCLbjMUE6kb3w3Pr4R2nTA=
+
+Name: lib/arm64-v8a/libjgbibc.so
+SHA1-Digest: TLIOKwxsb3khJCOrV6IJRbIfir0=
+
+Name: lib/arm64-v8a/libjniPdfium.so
+SHA1-Digest: U08SnrUyT/shOQKf4N6yH/UhKoY=
+
+Name: lib/arm64-v8a/libminilzo.so
+SHA1-Digest: cHIuuLihR3E7F2W0nw5l/w2GSLU=
+
+Name: lib/arm64-v8a/libmodft2.so
+SHA1-Digest: QwsT8ON2+dTgWD0RtVhiN9f198Y=
+
+Name: lib/arm64-v8a/libmodpdfium.so
+SHA1-Digest: WJXw15R94ebpurbi2ougq4RjvX8=
+
+Name: lib/arm64-v8a/libmodpng.so
+SHA1-Digest: PUZ4SRq8sh73R+HmUK+b2TAxIp4=
+
+Name: lib/arm64-v8a/libsentry-android.so
+SHA1-Digest: MBQYA7iBY3eW8FKsAFJ+18iuEgc=
+
+Name: lib/arm64-v8a/libsentry.so
+SHA1-Digest: n6yNTOYDRELD8ewHZfEj6BJbOI4=
+
+Name: lib/arm64-v8a/libswresample.so
+SHA1-Digest: jum3M0Md773t9QDi6tRymYHEAGo=
+
+Name: lib/arm64-v8a/libswscale.so
+SHA1-Digest: Nxu64+tTlze6rAjHoWNAZyHluew=
+
+Name: lib/arm64-v8a/libtutk_ffmpeg.so
+SHA1-Digest: PSXFbSB1ZXOHTcxrkNhf/mQUmnc=
+
+Name: lib/arm64-v8a/libtutk_media.so
+SHA1-Digest: x+IVFBp+mZ+1aJNkaa0SxHrLXJQ=
+
+Name: lib/arm64-v8a/libvlc.so
+SHA1-Digest: LqIuTydfm6mubKp7dgAPV9AttB8=
+
+Name: lib/arm64-v8a/libvlcjni.so
+SHA1-Digest: h3TrrI2nfyWror++yHyclm/TgY4=
+
+Name: lib/arm64-v8a/libyuv.so
+SHA1-Digest: GsUDPXGP7dLG+Ks9uPosfVdlLX4=
+
+Name: stamp-cert-sha256
+SHA1-Digest: 5vTkm69vqAbusD/fho7oWwc7j+I=
+
