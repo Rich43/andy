@@ -52,3 +52,60 @@ lib.IOTC_DeInitialize()
 ```
 
 This snippet illustrates the minimal sequence required to retrieve raw H.264 frames from a printer's webcam.
+
+### Extended Example (Python)
+
+The following script expands on the minimal example by discovering printers on the local network and letting the user choose one to stream from:
+
+```python
+import sys
+from ctypes import (
+    CDLL, Structure, byref, c_char, c_uint16, c_int, c_uint
+)
+
+# ------------------------------------------------------------------
+# Discovery structures / helpers
+# ------------------------------------------------------------------
+class IOTCDevInfo(Structure):
+    _fields_ = [
+        ("UID",  c_char * 20),   # UID of the device
+        ("IP",   c_char * 16),   # dotted-decimal LAN IP
+        ("port", c_uint16),
+        ("rsv",  c_char * 2)
+    ]
+
+def discover_printers(timeout_ms=2000, max_num=16):
+    """Return a list of (UID, IP) tuples found on the LAN."""
+    tutk = CDLL("/path/to/libIOTCAPIs_All.so")
+    devices = (IOTCDevInfo * max_num)()
+    count = tutk.IOTC_Lan_Search2(
+        byref(devices[0]), c_int(max_num), c_uint(timeout_ms)
+    )
+    return [
+        (
+            devices[i].UID.decode(errors="ignore").rstrip("\x00"),
+            devices[i].IP.decode(errors="ignore")
+        )
+        for i in range(count)
+    ]
+
+def choose_device(devs):
+    for i, (uid, ip) in enumerate(devs):
+        print(f"{i}: {uid} @ {ip}")
+    idx = int(input("Select printer index: "))
+    return devs[idx][0]   # return the UID only
+
+# ------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------
+if __name__ == "__main__":
+    nearby = discover_printers()
+    if not nearby:
+        print("No printers detected on the LAN.")
+        sys.exit(1)
+
+    uid = choose_device(nearby)
+    print(f"Connecting to {uid} …")
+    # reuse your existing stream_to_file(uid, out_file)
+    stream_to_file(uid, out_file=f"{uid}.h264")
+```
