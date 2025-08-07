@@ -17,10 +17,13 @@ from ctypes import (
     Structure,
     byref,
     c_char,
+    c_char_p,
     c_int,
     c_uint,
     c_uint16,
     c_ubyte,
+    c_void_p,
+    POINTER,
 )
 from pathlib import Path
 import sys
@@ -29,8 +32,14 @@ import sys
 # Load SDK libraries from the Webcam/x64 directory
 # ---------------------------------------------------------------------------
 LIB_DIR = Path(__file__).resolve().parent / "Webcam" / "x64"
-IOTC = CDLL(str(LIB_DIR / "IOTCAPIs.dll"))
-AV = CDLL(str(LIB_DIR / "AVAPIs.dll"))
+if sys.platform == "win32":
+    from ctypes import WinDLL  # type: ignore[attr-defined]
+
+    IOTC = WinDLL(str(LIB_DIR / "IOTCAPIs.dll"))
+    AV = WinDLL(str(LIB_DIR / "AVAPIs.dll"))
+else:
+    IOTC = CDLL(str(LIB_DIR / "IOTCAPIs.dll"))
+    AV = CDLL(str(LIB_DIR / "AVAPIs.dll"))
 
 
 class IOTCDevInfo(Structure):
@@ -42,6 +51,34 @@ class IOTCDevInfo(Structure):
         ("port", c_uint16),
         ("rsv", c_char * 2),
     ]
+
+
+# Function prototypes
+IOTC.IOTC_Initialize.argtypes = [c_uint16, c_char_p, c_char_p, c_char_p, c_char_p]
+IOTC.IOTC_Initialize.restype = c_int
+IOTC.IOTC_Lan_Search2.argtypes = [POINTER(IOTCDevInfo), c_int, c_uint]
+IOTC.IOTC_Lan_Search2.restype = c_int
+IOTC.IOTC_Connect_ByUID.argtypes = [c_char_p]
+IOTC.IOTC_Connect_ByUID.restype = c_int
+AV.avClientStart.argtypes = [c_int, c_char_p, c_char_p, c_uint, c_uint, c_uint]
+AV.avClientStart.restype = c_int
+AV.avRecvFrameData2.argtypes = [
+    c_int,
+    POINTER(c_ubyte),
+    c_int,
+    c_void_p,
+    c_void_p,
+    c_void_p,
+    c_void_p,
+    c_void_p,
+]
+AV.avRecvFrameData2.restype = c_int
+AV.avClientStop.argtypes = [c_int]
+AV.avClientStop.restype = c_int
+IOTC.IOTC_Connect_Stop_BySID.argtypes = [c_int]
+IOTC.IOTC_Connect_Stop_BySID.restype = c_int
+IOTC.IOTC_DeInitialize.argtypes = []
+IOTC.IOTC_DeInitialize.restype = c_int
 
 
 def discover_printers(timeout_ms: int = 2000, max_num: int = 16):
