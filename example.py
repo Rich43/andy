@@ -26,6 +26,7 @@ from ctypes import (
     POINTER,
 )
 from pathlib import Path
+import logging
 import sys
 
 # ---------------------------------------------------------------------------
@@ -86,6 +87,9 @@ def discover_printers(timeout_ms: int = 2000, max_num: int = 16):
 
     devices = (IOTCDevInfo * max_num)()
     count = IOTC.IOTC_Lan_Search2(byref(devices[0]), c_int(max_num), c_uint(timeout_ms))
+    if count < 0:
+        logging.error("IOTC_Lan_Search2 failed with code %d", count)
+        return []
     return [
         (
             devices[i].UID.decode(errors="ignore").rstrip("\x00"),
