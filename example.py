@@ -26,6 +26,7 @@ from ctypes import (
     POINTER,
 )
 from pathlib import Path
+import argparse
 import logging
 import sys
 
@@ -99,39 +100,56 @@ def discover_printers(timeout_ms: int = 2000, max_num: int = 16):
     ]
 
 
-def stream_to_file(uid: str, out_file: str):
+def stream_to_file(uid: str, username: str, password: str, out_file: str):
     """Stream H.264 frames from the printer identified by UID into a file."""
 
     sid = IOTC.IOTC_Connect_ByUID(uid.encode())
-    av_index = AV.avClientStart(sid, b"user", b"pass", c_uint(20), 0, 0)
+    av_index = AV.avClientStart(
+        sid, username.encode(), password.encode(), c_uint(20), 0, 0
+    )
 
     buf = (c_ubyte * (1024 * 1024))()
-    with open(out_file, "wb") as fh:
-        while True:
-            size = AV.avRecvFrameData2(av_index, buf, len(buf), None, None, None, None, None)
-            if size <= 0:
-                break
-            fh.write(bytes(buf[:size]))
-
-    AV.avClientStop(av_index)
-    IOTC.IOTC_Connect_Stop_BySID(sid)
+    try:
+        with open(out_file, "wb") as fh:
+            while True:
+                size = AV.avRecvFrameData2(
+                    av_index, buf, len(buf), None, None, None, None, None
+                )
+                if size <= 0:
+                    break
+                fh.write(bytes(buf[:size]))
+    finally:
+        AV.avClientStop(av_index)
+        IOTC.IOTC_Connect_Stop_BySID(sid)
 
 
 def main():
-    IOTC.IOTC_Initialize(0)
-    printers = discover_printers()
-    if not printers:
-        print("No printers detected on the LAN.")
-        IOTC.IOTC_DeInitialize()
-        return
+    parser = argparse.ArgumentParser(description="Stream printer webcam video")
+    parser.add_argument("--username", default="user", help="Printer login username")
+    parser.add_argument("--password", default="pass", help="Printer login password")
+    parser.add_argument(
+        "--output",
+        help="Path to save H.264 stream; defaults to <UID>.h264",
+        default=None,
+    )
+    args = parser.parse_args()
 
-    for idx, (uid, ip) in enumerate(printers):
-        print(f"{idx}: {uid} @ {ip}")
-    choice = int(input("Select printer index: "))
-    uid = printers[choice][0]
-    print(f"Streaming from {uid} ...")
-    stream_to_file(uid, f"{uid}.h264")
-    IOTC.IOTC_DeInitialize()
+    try:
+        IOTC.IOTC_Initialize(0)
+        printers = discover_printers()
+        if not printers:
+            print("No printers detected on the LAN.")
+            return
+
+        for idx, (uid, ip) in enumerate(printers):
+            print(f"{idx}: {uid} @ {ip}")
+        choice = int(input("Select printer index: "))
+        uid = printers[choice][0]
+        out_file = args.output or f"{uid}.h264"
+        print(f"Streaming from {uid} to {out_file} ...")
+        stream_to_file(uid, args.username, args.password, out_file)
+    finally:
+        IOTC.IOTC_DeInitialize()
 
 
 if __name__ == "__main__":
